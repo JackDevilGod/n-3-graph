@@ -17,3 +17,6 @@ class NumNode:
             value (int): value to be saved for the node.
         """
         self._from.add(value)
+
+    def __eq__(self, value: "NumNode") -> bool:
+        return (self.value, value.value)
