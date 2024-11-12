@@ -19,4 +19,8 @@ class NumNode:
         self._from.add(value)
 
     def __eq__(self, value: "NumNode") -> bool:
-        return (self.value, value.value)
+        return (self.value == value.value)
+
+    def dict(self) -> dict:
+        return {"value": self.value,
+                "from": list(self._from)}
