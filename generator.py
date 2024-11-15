@@ -16,7 +16,8 @@ def main():
 
     print("start generation")
     while True:
-        pprint(f"working on {working_list}", depth=4)next_list: list[NumNode] = []
+        pprint(f"working on {working_list}", depth=4)
+        next_list: list[NumNode] = []
 
         for node in working_list:
             created_nodes: list[NumNode] = []
