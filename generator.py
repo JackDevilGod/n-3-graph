@@ -1,4 +1,5 @@
 from copy import deepcopy
+from pprint import pprint
 
 from classes.node import NumNode
 from classes.storage import NodeStorage
@@ -10,10 +11,12 @@ def main():
     node_storage: NodeStorage = NodeStorage("graph")
     node_storage.add_node(first_node)
 
-    working_list: list[NumNode] = [first_node]
+    print("getting working directory")
+    working_list: list[NumNode] = node_storage.get_working_directory()
 
+    print("start generation")
     while True:
-        next_list: list[NumNode] = []
+        pprint(f"working on {working_list}", depth=4)next_list: list[NumNode] = []
 
         for node in working_list:
             created_nodes: list[NumNode] = []
