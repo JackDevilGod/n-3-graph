@@ -32,3 +32,22 @@ class NodeStorage:
             node.add_from(parent)
 
         return node
+
+    def get_working_directory(self) -> list[NumNode]:
+        files: list[str] = sorted(os.listdir(self.storage_path), key=lambda x: int(x[:-5]))
+        working_directory: list[NumNode] = []
+        for node_name in files:
+            with open(os.path.join(self.storage_path, node_name), "r+") as file:
+                data: dict = json.load(file)
+                current_node: NumNode = NumNode(data["value"])
+
+                for value in data["from"]:
+                    current_node.add_from(value)
+
+            for saved_node in working_directory:
+                if current_node.is_in_from(saved_node):
+                    working_directory.remove(saved_node)
+
+            working_directory.append(current_node)
+
+        return working_directory
